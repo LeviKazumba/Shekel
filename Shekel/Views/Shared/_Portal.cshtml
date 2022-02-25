@@ -1,0 +1,375 @@
+﻿@{
+    var User = ViewBag.User;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>The School System</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Content/tempusdominus-bootstrap-4.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/icheck-bootstrap.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Content/jqvmap.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Content/OverlayScrollbars.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/adminlte.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Content/summernote-bs4.css">
+
+    <link href="~/Content/notiflix-2.7.0.min.css" rel="stylesheet" />
+    <link href="~/Content/Main.css" rel="stylesheet" />
+
+    @RenderSection("Styles", false)
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i id="SideBarBtn" onclick="SideBarBtnSwitch()" class="fas fa-arrow-left"></i></a>
+            </li>
+            <!-- <li class="nav-item d-none d-sm-inline-block">
+                <a href="index3.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>-->
+        </ul>
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <!--<a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-comments"></i>
+                    <span class="badge badge-danger navbar-badge">3</span>
+                </a>-->
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Brad Diesel
+                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">Call me whenever you can...</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    John Pierce
+                                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">I got your message bro</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <!-- Message Start -->
+                        <div class="media">
+                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <div class="media-body">
+                                <h3 class="dropdown-item-title">
+                                    Nora Silvester
+                                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                </h3>
+                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                            </div>
+                        </div>
+                        <!-- Message End -->
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+            </li>
+            <!-- Notifications Dropdown Menu -->
+            <li class="nav-item dropdown">
+                <!--<a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>-->
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-users mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-file mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <h5 class="nav-link" role="button">
+                    R 150
+                </h5>
+            </li>
+            <!--<li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand"></i>
+                </a>
+            </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Profile", "Portal")" role="button">
+                    <i class="fas fa-user"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="Logout();" role="button">
+                    <i class="fas fa-power-off"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="Index" class="brand-link">
+            <!--<img src="" alt="School Logo" class="brand-image img-circle elevation-3" style="opacity: .8">-->
+            <div class="text-center">
+                <h4 class="brand-text font-weight-bold">Shekel</h4>
+            </div>
+        </a>
+
+
+        <div class="sidebar">
+
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="info mx-auto">
+                    <a href="Profile" class="d-block">
+                        <h4>@User.DisplayName</h4>
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-inline">
+                <div class="input-group" data-widget="sidebar-search">
+                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+
+                    <li class="nav-item">
+                        <a href="Index" class="nav-link">
+                            <i class="nav-icon fas fa-chart-line text-warning"></i>
+                            <p>
+                                Home
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-hand-holding-usd text-green"></i>
+                            <p>
+                                Transactions
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right"></span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="ProcessKYC" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-green"></i>
+                                    <p>My History</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @if (User.UserType == "SystemAdmin")
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-list text-primary"></i>
+                                <p>
+                                    Management
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right"></span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="Users" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-primary"></i>
+                                        <p>Users</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="ProcessKYC" class="nav-link">
+                                        <i class="far fa-circle nav-icon text-primary"></i>
+                                        <p>Manage FICA (KYC)</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a href="Settings" class="nav-link">
+                            <i class="nav-icon fas fa-cog text-info"></i>
+                            <p>
+                                Settings
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right"></span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="Profile" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="Security" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>Security</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="KYC" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-info"></i>
+                                    <p>FICA (KYC)</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-question-circle text-danger"></i>
+                            <p>
+                                Help
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right"></span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="FAQ" class="nav-link">
+                                    <i class="far fa-circle nav-icon text-success"></i>
+                                    <p>Getting Started</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <div class="d-flex justify-content-center text-center">
+                    <footer class="text-white" style="position:fixed; bottom: .5rem;">
+                        <h5>@User.ReferralCode</h5>
+                    </footer>
+                </div>
+            </nav>
+
+            <!-- Sidebar Menu -->
+
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+
+        @RenderBody()
+
+    </div>
+
+    <div>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2022</strong>
+            <!--<div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>-->
+        </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Scripts/jquery.overlayScrollbars.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/adminlte.min.js"></script>
+    <!-- jQuery Mapael -->
+    <script src="~/Scripts/jquery.mousewheel.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/notiflix-2.7.0.min.js"></script>
+    <!--Main js-->
+    <script src="~/Scripts/Main.js"></script>
+
+    @RenderSection("scripts", false);
+
+    <script>
+
+
+        function SideBarBtnSwitch() {
+            if ($("#SideBarBtn").hasClass("fa-arrow-left")) {
+                $("#SideBarBtn").removeClass("fa-arrow-left");
+                $("#SideBarBtn").addClass("fa-arrow-right");
+            }
+            else {
+                $("#SideBarBtn").addClass("fa-arrow-left");
+                $("#SideBarBtn").removeClass("fa-arrow-right");
+            }
+        }
+    </script>
+</body>
+</html>

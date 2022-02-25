@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Portal.cshtml";
+
+    var User = ViewBag.User;
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>My Profile</h4>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">Settings</li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-primary shadow">
+                    <form id="ProfileForm" novalidate="novalidate" onsubmit="event.preventDefault()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="Name">Name</label>
+                                    <input id="Name" type="text" class="form-control" name="Name" required value="@User.Name" placeholder="Enter your name" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Surname">Surname</label>
+                                    <input id="Surname" type="text" class="form-control" name="Surname" value="@User.Surname" required placeholder="Enter your surname" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="Email">Email</label>
+                                    <input id="Email" type="text" class="form-control" name="Email"  value="@User.Email" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Telephone">Telephone</label>
+                                    <input id="Telephone" type="text" class="form-control" name="Telephone" value="@User.Telephone" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="DocumentType">Document Type</label>
+                                    <input id="DocumentType" type="text" class="form-control" name="DocumentType"  value="@User.DocumentType" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="DocumentNumber">DocumentNumber</label>
+                                    <input id="DocumentNumber" type="text" class="form-control" name="DocumentNumber" value="@User.DocumentNumber" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="ReferralCode">Referral Code</label>
+                                    <input id="ReferralCode" type="text" class="form-control" name="ReferralCode"  value="@User.ReferralCode" readonly>
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" onclick="EditProfile();" class="btn btn-info pull-left mr-3 rounded shadow">Edit</button>
+
+                            <button type="submit" onclick="UpdateProfile();" class="btn btn-success pull-right rounded shadow">Update</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+   
+</script>
+

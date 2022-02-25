@@ -1,0 +1,79 @@
+﻿.login-page {
+    /*background-image: url("../Img/bg.png");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: auto; */
+}
+
+.valid {
+    color: #28A745 !important
+}
+
+.ActiveBadge {
+    font-size: small !important;
+    border: solid 1px green !important;
+    color: green !important;
+    border-radius: 12px !important;
+    pointer-events: none;
+}
+
+.DeactivatedBage {
+    font-size: small !important;
+    border: solid 1px red !important;
+    color: red !important;
+    border-radius: 12px !important;
+    pointer-events: none;
+}
+
+#ProductImg .profile-pic {
+    max-width: 180px;
+    max-height: 180px;
+    display: block;
+}
+
+#ProductImg .file-upload {
+    display: none;
+}
+
+#ProductImg .circle {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 188px;
+    height: 188px;
+    border: 4px solid #808080;
+    transition: all .3s;
+}
+
+    #ProductImg .circle:hover {
+        background-color: #FFD800;
+        cursor: pointer
+    }
+
+#ProductImg img {
+    max-width: 100%;
+    height: auto;
+    min-width: 170px;
+    min-height: 170px
+}
+
+
+.MenuOpen {
+    border: 1px solid lightblue;
+}
+
+
+/*Image upload*/
+
+
+#IDPreview {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+
+#SelfiePreview {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
+

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "KYC";
+    Layout = "~/Views/Shared/_Portal.cshtml";
+    var User = ViewBag.User;
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>Account Verification</h4>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">Settings</li>
+                    <li class="breadcrumb-item active">FICA (KYC)</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-primary shadow">
+                    <form id="KYCForm" novalidate="novalidate" onsubmit="event.preventDefault()">
+                        <div class="card-body">
+                            <div class="row mt-3">
+                                <div class="form-group col-md-6">
+                                    <label class="my-1 mr-2" for="DocumentType">Document Type</label>
+                                    <select autocomplete="none" class="custom-select" id="DocumentType">
+                                        <option selected value="National ID">National ID</option>
+                                        <option value="Passport">Passport</option>
+                                        <option value="Asylum">Asylum</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="DocumentNumber">Document Number</label>
+                                    <input id="DocumentNumber" type="text" class="form-control" name="DocumentNumber" required placeholder="Enter your document number">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <div class="card mx-auto mt-2" style="width: 15rem;box-shadow:none">
+                                        <img id="IDPreview" class="card-img-top rounded" src="~/Img/ID.png" alt="Card image cap" >
+                                        <input type="file" id="Document" style="opacity:0" />
+                                        <button onclick="$('#Document').click();" class="card-body p-1 col-md-8 mx-auto shadow btn btn-info btn-sm">
+                                            Upload
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 mx-auto">
+                                    <div class="card mx-auto mt-2" style="width: 15rem;box-shadow:none">
+                                        <img id="SelfiePreview" class="card-img-top rounded" src="~/Img/Selfie ID.png" alt="Card image cap">
+                                        <input type="file" id="Selfie" style="opacity:0;" />
+                                        <button onclick="$('#Selfie').click();" class=" card-body p-1 col-md-8 mx-auto shadow btn btn-info btn-sm">
+                                            Upload
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mt-2 col-md-10 mx-auto">
+                                    <p class="font-weight-normal" style="text-align:center">
+                                        * Please select a document type, then enter your document number.<br/>
+                                        * Secondly upload a copy of your document, and then upload a picture of
+                                        yourself holding a piece of paper with the following code: <span class="font-weight-bold" id="KYCOTP"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" onclick="KYC();" class="btn btn-success pull-right rounded shadow">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            var m = new Date();
+            var KYCOTP =
+                ("0" + m.getUTCSeconds()).slice(-2)+
+                ("0" + m.getUTCMilliseconds()).slice(-2);
+
+            $("#KYCOTP").text(KYCOTP);
+
+            $("#Document").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#IDPreview')
+                            .attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            $("#Selfie").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#SelfiePreview')
+                            .attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+        });
+    </script>
+
+
+}
+
+
+

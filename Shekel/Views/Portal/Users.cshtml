@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Portal.cshtml";
+
+    var User = ViewBag.User;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/Content/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Content/buttons.bootstrap4.min.css">
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>Manage Users</h4>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">Management</li>
+                    <li class="breadcrumb-item active">Users</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row SearchUserForm">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-primary shadow">
+                    <form id="SearchUserForm" novalidate="novalidate" onsubmit="event.preventDefault()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="my-1 mr-2" for="Filter">Search By:</label>
+                                    <select class="custom-select" id="Filter">
+                                        <option selected value="Email">Email</option>
+                                        <option value="Name">Name</option>
+                                        <option value="Email">Telephone</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Term">Search term</label>
+                                    <input id="Term" type="text" class="form-control" name="Term" required placeholder="Enter search term">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="reset" class="btn btn-warning pull-left mr-3 rounded shadow">Clear</button>
+
+                            <button type="submit" onclick="Users();" class="btn btn-success pull-right rounded shadow">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row UsersTable mt-4">
+            <div class="col-8 mx-auto">
+                <div class="card card-primary shadow">
+                    <div class="card-body">
+                        <table id="UsersTable" class="table table-bordered table-striped display nowrap" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Manage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row UserDetails" style="display:none">
+            <div class="col-md-11 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h4>User Profile</h4>
+                            </div>
+                            <div class="col-10">
+                                <button type="button" data-toggle="modal" data-target="#AccountReloadModal" class="btn btn-success rounded float-right shadow">Reload Account</button>
+                                <button onclick="$('.UserDetails').hide();$('.SearchUserForm').show();$('.UsersTable').show();" class="btn btn-warning mr-3 float-right rounded shadow">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Name">Name</label>
+                                <input id="Name" type="text" class="form-control" name="Name" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Surname">Surname</label>
+                                <input id="Surname" type="text" class="form-control" name="Surname" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Email">Email</label>
+                                <input id="Email" type="text" class="form-control" name="Email" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="Telephone">Telephone</label>
+                                <input id="Telephone" type="text" class="form-control" name="Telephone" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="DocumentType">Document Type</label>
+                                <input id="DocumentType" type="text" class="form-control" name="DocumentType" readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="DocumentNumber">DocumentNumber</label>
+                                <input id="DocumentNumber" type="text" class="form-control" name="DocumentNumber" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="LastUpdated">Last Updated</label>
+                                <input id="LastUpdated" type="text" class="form-control" name="LastUpdated" readonly>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="UpdatedBy">By Updated</label>
+                                <input id="UpdatedBy" type="text" class="form-control" name="UpdatedBy" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="Balance">Account Balance</label>
+                                <input id="Balance" type="text" class="form-control" name="Balance" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Account Reload Modal-->
+<div class="modal fade" id="AccountReloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Account Reload</h5>
+            </div>
+            <div class="modal-body">
+                <form id="AccountReloadForm"  novalidate="novalidate" onsubmit="event.preventDefault()">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Name">Name</label>
+                            <input id="UserID" type="hidden" />
+                            <h4 id="ReloadName" name="ReloadName"></h4>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="CurrentBalance">Account Balance</label>
+                            <h4 id="CurrentBalance" name="CurrentBalance"></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Amount">Amount to reload</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">R</span>
+                                </div>
+                                <input id="Amount" name="Amount" type="number" required class="form-control" aria-label="Amount" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="submit" onclick="AccountReload()" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $(function () {
+                $("#UsersTable").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                });
+            });
+        });
+    </script>
+
+}
+

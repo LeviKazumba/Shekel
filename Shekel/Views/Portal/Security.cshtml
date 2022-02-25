@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Security";
+    Layout = "~/Views/Shared/_Portal.cshtml";
+    var User = ViewBag.User;
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4>Account Settings</h4>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">Settings</li>
+                    <li class="breadcrumb-item active">Security</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card card-primary shadow">
+                    <form id="AccountSettingsForm" novalidate="novalidate" onsubmit="event.preventDefault()">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="OPassword">Current Password</label>
+                                    <input id="OPassword" type="password" class="form-control" name="OPassword" required placeholder="Enter your current password">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="NPassword">New Password</label>
+                                    <input id="NPassword" type="password" class="form-control" name="NPassword" required placeholder="Enter a new password">
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" onclick="UpdatePassword();" class="btn btn-success pull-right rounded shadow">Update</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

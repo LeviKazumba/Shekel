@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Portal.cshtml";
+    var KYC = ViewBag.KYC;
+    var User = ViewBag.User;
+}
+@if (User.Verified)
+{
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-gradient-info">
+                        <div class="inner">
+                            <h3>R 150</h3>
+                            <p>Account Balance</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <!--<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-gradient-danger">
+                        <div class="inner">
+                            <h3>3 Months</h3>
+                            <p>Investment Period</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <!--<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-gradient-warning text-white">
+                        <div class="inner">
+                            <h3>33.33%</h3>
+                            <p>Maturity Level</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <!--<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+
+                    <div class="small-box bg-gradient-success">
+                        <div class="inner">
+                            <h3>R 450</h3>
+                            <p>Estimated Returns</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-money-bill-1-wave"></i>
+                        </div>
+                        <!--<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            CheckKYC();
+
+
+            function CheckKYC() {
+                if ("@User.Verified" === "False") {
+
+                    if ("@KYC" === "SUBMITTED") {
+                        Notiflix.Report.Info('Oops!', 'Your account verification is in process. You will receive an email once your account has been verified', 'Okay', function () {
+                            window.location = "../Portal/Profile";
+                        });
+                    }
+                    else {
+                        Notiflix.Report.Warning('Oops!', 'We noticed that your account is not verified, please click the button below to start the verification process', 'Verify Account', function () {
+                            window.location = "../Portal/KYC";
+                        });
+                    }
+
+                }
+            }
+
+        });
+    </script>
+
+}

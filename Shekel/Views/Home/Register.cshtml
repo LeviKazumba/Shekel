@@ -1,0 +1,138 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Financial System</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/adminlte.css">
+
+    <link href="~/Content/notiflix-2.7.0.min.css" rel="stylesheet" />
+
+    <link href="~/Content/Main.css" rel="stylesheet" />
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box col-md-5">
+        <div class="login-logo">
+            <h1><b>The Financial System</b></h1>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card shadow">
+            <div class="card-body login-card-body">
+                <form id="SignUpForm" method="POST" action="" onsubmit="event.preventDefault()">
+                    <h4 class="login-box-msg">Sign Up</h4>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Name">Name</label>
+                            <input id="Name" type="text" class="form-control" name="Name" required placeholder="Enter your name">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Surname">Surname</label>
+                            <input id="Surname" type="text" class="form-control" name="Surname" required placeholder="Enter your surname">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="my-1 mr-2" for="Countries">Country</label>
+                            <select autocomplete="none" class="custom-select" id="Country">
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Telephone">Telephone</label>
+                            <input id="Telephone" type="text" class="form-control" autocomplete="none" name="Telephone" required placeholder="Enter your telephone">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Email">Email</label>
+                            <input id="Email" type="email" class="form-control" name="Email" required placeholder="Enter your email">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="Password">Password</label>
+                            <input id="Password" type="password" class="form-control" name="Password" required placeholder="Enter a password">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="ReferralCode">Referral Code</label>
+                            <input id="ReferralCode" type="number" step="1" class="form-control" name="ReferralCode">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>-->
+
+                    <div class="form-group mt-2">
+                        <button type="submit" onclick="SignUp();" class="btn btn-success btn-block col-md-4 mx-auto">Sign Up</button>
+                    </div>
+                    <p class="mt-4">
+                        Have an account?<a href="@Url.Action("Index", "Home")"> Sign in</a>
+                    </p>
+
+                </form>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/adminlte.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/notiflix-2.7.0.min.js"></script>
+    <script src="~/Scripts/Main.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            Countries();
+
+            $.get("https://api.ipdata.co?api-key=2fcf7fd8a18e76446d22cf75a9bcb10902750a34dfdd77d5f1a39dbc", function (response) {
+
+                $("#Country").val("+" + response.calling_code);
+                $("#Telephone").val($("#Country").val());
+            }, "jsonp");
+
+            $("#Country").change(function () {
+                $("#Telephone").val($("#Country").val());
+            });
+
+            $("#Telephone").keydown(function (e) {
+
+                var key = e.keyCode || e.charCode;
+
+                if (!isFinite(e.key) && !(key == 8 || key == 46)) {
+                    e.preventDefault();
+                }
+                var oldvalue = $("#Country").val();
+                var field = $("#Telephone").val();
+                if (field === oldvalue && key == 8 || key == 46) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+            });
+        });
+    </script>
+</body>
+</html>
